@@ -186,12 +186,12 @@ button#add-todo { margin-top:2px; padding:2px 5px; border-radius:3px; border:1px
     margin-bottom: 4px;
     font-family: var(--font-links);
     font-size: 0.9em;               /* match links size */
-    color: #50fa7b;                 /* brighter green for readability */
+    color: #f8f8f2;                 /* brighter green for readability */
     text-decoration: none;
 }
 
 #rss-box a:hover {
-    color: #ff79c6;                 /* hover color stays cyberpunk pink */
+    color: #55727A;                 /* hover color stays cyberpunk pink */
 }
 
 /* Clock stays */
@@ -241,7 +241,7 @@ button#add-todo { margin-top:2px; padding:2px 5px; border-radius:3px; border:1px
 
 
 .cyber-panel:hover {
-    border-color: #bd93f9;);
+    border-color: #17808A;);
     box-shadow: 0 0 8px rgba(189, 147, 249, 0.15);
 }
 
@@ -357,11 +357,11 @@ button#add-todo { margin-top:2px; padding:2px 5px; border-radius:3px; border:1px
 .calendar-day.holiday {
   background: linear-gradient(
     135deg,
-    rgba(189, 147, 249, 0.6), /* semi-transparent purple */
-    rgba(121, 40, 202, 0.6)   /* semi-transparent dark purple */
+    rgba(23, 132, 142, 0.9),
+    rgba(15, 90, 97, 0.9)
   );
   color: white;
-  box-shadow: 0 0 10px rgba(255, 0, 128, 0.6);
+  box-shadow: 0 0 12px rgba(23, 132, 142, 0.7);
 }
 
 

@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // -------------------- WEATHER --------------------
     const weatherEl = document.getElementById('weather');
-    const WEATHER_API_KEY = '32883585188cfcb50a273e76b1985079';
-    const CITY_ID = '4160021';
+    const WEATHER_API_KEY = 'API KEY here';
+    const CITY_ID = 'CITY ID Here';
 
     async function updateWeather() {
         try {

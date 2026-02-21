@@ -1,4 +1,6 @@
 # Minimal Startpage
+## Inspiration
+Inspired by [CyberpunkSysMon_versionC](https://github.com/middlefingerapp/CyberpunkSysMon_versionC) by middlefingerapp. Dope project.
 
 A lightweight, customizable browser startpage built HTML, CSS, and JavaScript.
 
@@ -6,12 +8,11 @@ A lightweight, customizable browser startpage built HTML, CSS, and JavaScript.
 
 
 ## Features
-
-- Minimal and distraction-free layout
-- Weather integration (OpenWeather API)
-- Customizable links
-- Responsive design
-- No frameworks, fully static
+.Minimal and distraction-free layout
+.Weather integration (OpenWeather API)
+.Customizable links
+.Responsive design
+.No frameworks, fully static
 
 ---
 

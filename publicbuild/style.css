@@ -1,0 +1,747 @@
+:root {
+  --color-bg: #000000;
+  --color-panel: #050505;
+  --color-border: #333333;
+  --color-title: #8be9fd;
+  --color-links: #bd93f9;
+  --color-hover: #ff79c6;
+  --radius: 6px;
+  --spacing: 15px;
+
+  /* Fonts */
+  --font-stack: 'JetBrains Mono Nerd', monospace;
+  --font-title: 'Hack Nerd', monospace; /* <-- Changed to Hack */
+  --font-links: 'Fira Code Nerd', monospace;
+  --font-clock: 'VCR OSD Mono', monospace;
+}
+
+/* Panel headers and category titles */
+.panel-header,
+.category-title {
+    font-family: var(--font-title); /* now uses Hack */
+}
+
+
+/* ---------- Base Styles ---------- */
+body {
+  margin:0; padding:0;
+  font-family: var(--font-stack);
+  background: var(--color-bg);
+  color:#f8f8f2;
+  height:100vh; width:100vw; overflow:hidden;
+}
+
+.main-interface {
+  display:grid;
+  grid-template-columns:22% 1fr 28%;
+  gap: var(--spacing);
+  height:100vh;
+  padding: var(--spacing);
+}
+
+.layout-col { display:flex; flex-direction:column; gap:var(--spacing); min-height:0; }
+
+.cyber-panel {
+  background: var(--color-panel);
+  border:1px solid var(--color-border);
+  border-radius: var(--radius);
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  padding: 25px 10px 10px 10px;
+  min-height:0;
+}
+
+.panel-header {
+  position:absolute;
+  top:5px;
+  left:10px;
+  background: var(--color-bg);
+  color: var(--color-title);
+  font-weight:bold;
+  font-size:0.85em;
+  padding:0 5px;
+  font-family: var(--font-title);
+}
+
+.left-col .flex-top { flex:3; min-height:0; }
+.left-col .flex-bottom { flex:1; min-height:0; display:flex; align-items:center; justify-content:center; font-weight:bold; color:var(--color-links); font-size:0.9em; }
+
+#spinner-box canvas { width:100%; height:100%; display:block; }
+
+.top-bar { height:40px; display:flex; align-items:center; justify-content:center; }
+.top-bar .top-center { display:flex; align-items:center; gap:20px; width:100%; justify-content:space-between; }
+
+#settings-btn { border:1px solid var(--color-border); border-radius:4px; padding:2px 6px; background:none; color:var(--color-title); cursor:pointer; font-size:0.8em; }
+#settings-btn:hover { border-color: var(--color-title); }
+
+.links-panel { flex:1; overflow-y:auto; padding-right:5px; }
+.link-category { margin-bottom:10px; }
+.category-title { font-weight:bold; color:var(--color-title); font-size:0.85em; font-family: var(--font-title); margin-bottom:3px; }
+.category-links a { display:inline-block; margin:0 4px 4px 0; color:var(--color-links); text-decoration:none; font-size:0.8em; font-family: var(--font-links); }
+.category-links a:hover { color: var(--color-hover); }
+
+.fluff-panel { height:40px; display:flex; align-items:center; justify-content:center; font-style:italic; color:var(--color-title); padding:5px; }
+
+.rss-panel { flex:3; overflow-y:auto; }
+.todo-panel { flex:1; display:flex; flex-direction:column; gap:5px; }
+
+input#todo-input { margin-top:5px; padding:2px; border-radius:3px; border:1px solid var(--color-border); background:none; color:#f8f8f2; }
+button#add-todo { margin-top:2px; padding:2px 5px; border-radius:3px; border:1px solid var(--color-border); background:none; color:var(--color-title); cursor:pointer; }
+
+#settings-menu { position:fixed; top:10%; left:50%; transform:translateX(-50%); background:var(--color-bg); border:1px solid var(--color-border); padding:15px; z-index:100; }
+.hidden { display:none; }
+
+/* Scrollbars */
+.links-panel::-webkit-scrollbar, .rss-panel::-webkit-scrollbar, .todo-panel::-webkit-scrollbar { width:6px; }
+.links-panel::-webkit-scrollbar-thumb, .rss-panel::-webkit-scrollbar-thumb, .todo-panel::-webkit-scrollbar-thumb { background:var(--color-border); border-radius:3px; }
+
+/* Clock & Weather */
+#clock { font-family: var(--font-clock); font-weight:700; font-size:1.1em; color: var(--color-title); }
+#weather { font-family: var(--font-stack); font-size:1em; color: var(--color-links); }
+
+/* RSS feed links */
+#rss-box a { display:block; margin-bottom:4px; color:var(--color-links); text-decoration:none; font-family: var(--font-links); }
+#rss-box a:hover { color: var(--color-hover); }
+
+/* Info bar */
+.info-bar { display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background: var(--color-panel); border:1px solid var(--color-border); border-radius: var(--radius); font-family: var(--font-stack); font-size:0.85em; line-height:1.2; }
+.info-bar > div { white-space:nowrap; text-transform:uppercase; }
+
+/* Top bar */
+.top-bar { background: var(--color-panel); border:1px solid var(--color-border); border-radius: var(--radius); padding:0 15px; }
+
+/* Center Links header */
+.links-panel .panel-header { left:50%; transform:translateX(-50%); text-align:center; }
+
+/* Fonts for Signals/Other */
+.signal-waveform { font-weight:bold; color:var(--color-links); font-size:0.9em; }
+
+/* ---------- Font-Face Declarations ---------- */
+@font-face {
+  font-family: 'Fira Code Nerd';
+  src: url('fonts/FiraCodeNerdFontMono-Regular.ttf') format('truetype');
+  font-weight:400;
+}
+@font-face {
+  font-family: 'Fira Code Nerd';
+  src: url('fonts/FiraCodeNerdFont-Bold.ttf') format('truetype');
+  font-weight:700;
+}
+
+@font-face {
+  font-family: 'Hack Nerd';
+  src: url('fonts/HackNerdFont-Regular.ttf') format('truetype');
+  font-weight:400;
+}
+@font-face {
+  font-family: 'Hack Nerd';
+  src: url('fonts/HackNerdFont-Bold.ttf') format('truetype');
+  font-weight:700;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono Nerd';
+  src: url('fonts/JetBrainsMonoNerdFont-Regular.ttf') format('truetype');
+  font-weight:400;
+}
+@font-face {
+  font-family: 'JetBrains Mono Nerd';
+  src: url('fonts/JetBrainsMonoNerdFont-Bold.ttf') format('truetype');
+  font-weight:700;
+}
+
+@font-face {
+  font-family: 'VCR OSD Mono';
+  src: url('fonts/VCR_OSD_MONO.ttf') format('truetype');
+  font-weight:400;
+}
+
+
+/* Clock */
+#clock {
+    font-family: 'VCR OSD Mono', monospace; /* fixed clock font */
+    font-size: 18px; /* adjust if you want larger or smaller */
+    font-weight: bold;
+    color: var(--color-title);
+}
+
+
+
+/* ---------- Fonts & Sizes ---------- */
+.panel-header,
+.category-title {
+    font-family: var(--font-title); /* Hack Nerd */
+    font-size: 1em;                 /* slightly bigger titles */
+}
+
+.category-links a {
+    font-family: var(--font-links); /* Fira Code Nerd */
+    font-size: 1.0em;               /* slightly bigger links */
+}
+
+/* ---------- RSS Feed ---------- */
+#rss-box a {
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--font-links);
+    font-size: 0.9em;               /* match links size */
+    color: #50fa7b;                 /* brighter green for readability */
+    text-decoration: none;
+}
+
+#rss-box a:hover {
+    color: #ff79c6;                 /* hover color stays cyberpunk pink */
+}
+
+/* Clock stays */
+#clock {
+    font-family: var(--font-clock); 
+    font-size: 18px; 
+    font-weight: bold;
+    color: var(--color-title);
+}
+
+
+.processing-bar {
+    flex: 1;
+    background: linear-gradient(to top, #8be9fd, #50fa7b);
+    height: 20%;
+    border-radius: 2px;
+    transition: height 0.1s ease;
+}
+
+
+/* SIGNAL VISUALIZER BARS — CPU‑style discrete blocks */
+.signal-bars-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 60px; /* visual height */
+    width: 100%;
+    padding: 4px 0;
+}
+
+.signal-bar {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px;
+}
+
+.signal-bar .pip {
+    flex: 1;
+    background: #222;
+    transition: background 0.2s ease;
+}
+.signal-bar .pip.active { background: var(--color-purple); }
+.signal-bar .pip.warn { background: var(--color-pink); }
+.signal-bar .pip.crit { background: var(--color-alert); }
+
+
+.cyber-panel:hover {
+    border-color: #bd93f9;);
+    box-shadow: 0 0 8px rgba(189, 147, 249, 0.15);
+}
+
+
+/* SIGNAL VISUALIZER BARS — CPU‑style discrete blocks */
+.signal-bars-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 60px; /* visual height */
+    width: 100%;
+    padding: 4px 0;
+}
+
+.signal-bar {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px;
+}
+
+.signal-bar .pip {
+    flex: 1;
+    background: #222;
+    transition: background 0.2s ease;
+}
+.signal-bar .pip.active { background: var(--color-purple); }
+.signal-bar .pip.warn { background: var(--color-pink); }
+.signal-bar .pip.crit { background: var(--color-alert); }
+
+
+/* ===============================
+   CYBER CALENDAR
+================================= */
+
+.calendar-panel {
+  font-family: 'Play', sans-serif;
+}
+
+.calendar-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-header-bar button {
+  background: #000;
+  border: 1px solid var(--color-title);
+  color: var(--color-title);
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.calendar-header-bar button:hover {
+  background: var(--color-title);
+  color: #000;
+  box-shadow: 0 0 8px var(--color-title);
+}
+
+#monthYear {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #50fa7b;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-header {
+  text-align: center;
+  font-size: 10px;
+  color: #f1fa8c;
+  font-weight: bold;
+}
+
+.calendar-day {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #0d0d0d;
+  border: 1px solid #222;
+  border-radius: 3px;
+
+  font-weight: bold;
+  font-size: 12px;
+  color: #8be9fd;
+
+  transition: all 0.2s ease;
+}
+
+.calendar-day:hover {
+  background: #50fa7b;
+  color: #000;
+  box-shadow: 0 0 8px #50fa7b;
+  transform: scale(1.05);
+}
+
+.calendar-day.today {
+  background: var(--color-title);
+  color: #000;
+  box-shadow: 0 0 12px var(--color-title);
+}
+
+.calendar-day.holiday {
+  background: linear-gradient(
+    135deg,
+    rgba(189, 147, 249, 0.6), /* semi-transparent purple */
+    rgba(121, 40, 202, 0.6)   /* semi-transparent dark purple */
+  );
+  color: white;
+  box-shadow: 0 0 10px rgba(255, 0, 128, 0.6);
+}
+
+
+//-----Artfix-----// 
+.layout-col > .cyber-panel {
+  flex-shrink: 0;      /* prevent shrinking if needed */
+}
+
+#art-box {
+  flex-shrink: 1;      /* artwork can shrink */
+  overflow: hidden;
+}
+
+/* Left column artwork adjustment */
+#art-box {
+    display: flex;
+    flex-direction: column;
+    flex: 1;                /* take remaining vertical space in left column */
+    overflow: hidden;       /* prevents pushing other panels */
+}
+
+#art-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* fills container without stretching */
+    border-radius: 4px;
+}
+
+
+/* ==================================================
+   TO-DO LIST STYLES (Scoped to .todo-panel)
+================================================== */
+
+/* Container list */
+.todo-panel #todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Each to-do item */
+.todo-panel #todo-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 6px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+/* Hover effect on items */
+.todo-panel #todo-list li:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* The task text */
+.todo-panel .todo-text {
+  cursor: pointer;
+  font-family: var(--font-links);
+  font-size: 0.9em;
+  transition: opacity 0.2s ease, text-decoration 0.2s ease;
+}
+
+/* Completed tasks */
+.todo-panel #todo-list li.done .todo-text {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* Delete button */
+.todo-panel .delete-btn {
+  background: none;
+  border: none;
+  color: var(--color-links);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Delete button hover */
+.todo-panel .delete-btn:hover {
+  color: var(--color-hover);
+}
+
+/* Clear all button */
+.todo-panel #clear-todo {
+  margin-top: 4px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  background: none;
+  color: var(--color-title);
+  cursor: pointer;
+  font-family: var(--font-links);
+  font-size: 0.8em;
+}
+
+/* Hover effect for clear button */
+.todo-panel #clear-todo:hover {
+  border-color: var(--color-title);
+  box-shadow: 0 0 6px rgba(139, 233, 253, 0.4);
+}
+
+/* ---------- ARTWORK / GIF PANEL FIX ---------- */
+#art-box {
+    display: flex;
+    flex-direction: column;
+    flex: 1;                /* take remaining vertical space in left column */
+    overflow: hidden;       /* prevents pushing other panels */
+}
+
+#art-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* fills container without stretching */
+    border-radius: 4px;
+}
+
+#spinner-container {
+    flex: 1;                   /* fill vertical space in panel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+#spinner-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* fills container like your artwork panel */
+    border-radius: 4px;
+}
+
+/* ---------- RSS Pagination ---------- */
+#rss-box div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+    gap: 6px;
+}
+
+#rss-box button {
+    background: var(--color-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-links);
+    padding: 3px 8px;
+    cursor: pointer;
+    font-family: var(--font-links);
+    font-size: 0.85em;
+    transition: all 0.2s ease;
+}
+
+#rss-box button:hover {
+    background: var(--color-links);
+    color: var(--color-bg);
+    border-color: var(--color-links);
+    box-shadow: 0 0 6px rgba(139, 233, 253, 0.4);
+}
+
+#rss-box span {
+    color: var(--color-title);
+    font-weight: bold;
+    font-family: var(--font-links);
+    font-size: 0.85em;
+}
+
+
+/* Make RSS feed fill the panel and remove extra bottom space */
+.rss-panel {
+    flex: 1;                  /* fill available vertical space */
+    display: flex;
+    flex-direction: column;    /* stack feed and pagination */
+    overflow: hidden;          /* prevent extra scroll gaps */
+    padding: 2;                /* remove panel padding if any */
+}
+
+
+#rss-box {
+    flex: 1;                  
+    overflow-y: auto;
+    margin: 0;
+    padding: 5px 5px 0 5px;    /* 5px top padding, keep 5px left/right, no bottom padding */
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Pagination buttons stay at the bottom */
+#rss-box div {
+    flex-shrink: 0;           /* don't let pagination shrink */
+    margin-top: 4px;          /* small gap above buttons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+
+/* Make To-Do list more compact / rectangular */
+.todo-panel {
+    flex: 1;               /* keep it smaller than RSS */
+    max-height: 160px;     /* adjust height as needed */
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;      /* scroll if items exceed space */
+}
+
+/* Adjust input and add button spacing inside panel */
+input#todo-input {
+    margin-top: 3px;
+    padding: 2px 4px;
+    font-size: 0.9em;
+}
+
+button#add-todo {
+    margin-top: 2px;
+    padding: 2px 6px;
+    font-size: 0.9em;
+}
+
+/* Individual To-Do items */
+.todo-panel #todo-list li {
+    padding: 3px 5px;
+    font-size: 0.9em;
+}
+
+
+
+/* ===============================
+   TELEMETRY PANEL THEME + SYSTEM WARNING
+================================= */
+#telemetry-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;             /* less spacing between bars */
+    padding-top: 20px;    /* smaller top padding for header */
+    position: relative;    /* required for scanlines */
+}
+
+/* Panel header */
+#telemetry-panel .panel-header {
+    font-family: var(--font-title);
+    font-size: 0.85em;      /* slightly smaller font */
+    color: var(--color-title);
+    margin-bottom: 6px;     /* reduce space between header and bars */
+    letter-spacing: 0.5px;
+    display: flex;
+    gap: 10px;             /* tight but readable space between "Swav OS" and first label */
+}
+
+/* Bars */
+#telemetry-panel .bar {
+    color: var(--color-links);
+    white-space: pre;             
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    position: relative;
+    font-size: 0.82em;      /* slightly smaller for compactness */
+}
+
+/* Scanlines effect */
+#telemetry-panel::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02) 0px,
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+}
+
+/* Highlight CPU/NET/TEMP labels */
+#cpu-bar::before { content: "CPU  "; color: var(--color-title); }
+#net-bar::before { content: "NET  "; color: var(--color-title); }
+#temp-bar::before { content: "TEMP "; color: var(--color-title); }
+
+/* GPS labels */
+#lat::before { content: "LAT  "; color: var(--color-hover); }
+#long::before { content: "LONG "; color: var(--color-hover); }
+#alt::before { content: "ALT  "; color: var(--color-hover); }
+
+/* ===============================
+   SYSTEM WARNING ANIMATION
+================================= */
+#telemetry-panel.system-warning {
+    animation: warning-flash 1.2s infinite;
+}
+
+@keyframes warning-flash {
+    0%, 100% { border-color: var(--color-border); }
+    50% { border-color: #ff5555; } /* red flash for alert */
+}
+
+
+.right-image-panel {
+    flex: 1;                     /* take available space in the column */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;            /* prevent stretching content */
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-panel);
+}
+
+.right-image-panel img {
+    width: 100%;                 /* fill the panel width */
+    height: 100%;                /* fill the panel height */
+    object-fit: cover;           /* maintain aspect ratio */
+    border-radius: 4px;
+}
+
+
+#fake-kernel-log {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.kernel-line {
+    font-size: 0.75em;
+    opacity: 0;
+    transform: translateY(4px);
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.kernel-line .ts {
+    opacity: 0.6;
+    margin-right: 6px;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ====== TELEMETRY PANEL FLEX LAYOUT ====== */
+#telemetry-panel {
+    display: flex;
+    flex-direction: row;      /* put stats and log side by side */
+    gap: 10px;                /* space between stats and log */
+    padding-top: 20px;
+}
+
+/* Left side: CPU / NET / TEMP / GPS bars */
+#telemetry-panel > .bar:not(#fake-kernel-log) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Right side: Kernel log */
+#fake-kernel-log {
+    flex: 1;                  /* take remaining horizontal space */
+    max-height: 300px;         /* adjust height if needed */
+    overflow-y: auto;
+    font-size: 0.7em;
+}
+
+#telemetry-panel {
+    display: flex;
+    flex-direction: row;      /* put stats and log side by side */
+    gap: 10px;                /* space between stats and log */
+    padding-top: 20px;
+}
+
+

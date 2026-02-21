@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="logo.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swav_NET // Swav_OS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="main-interface">
+
+  <!-- LEFT COLUMN -->
+  <section class="layout-col">
+
+    <div class="cyber-panel flex-3">
+      <div class="panel-header">HARDWARE_GEO</div>
+      <div id="viewport-3d" class="panel-content">
+     <div id="spinner-container"></div>
+    </div>
+
+      </div>
+    </div>
+
+    <div class="cyber-panel flex-bottom" id="art-box">
+      <div class="panel-header">ART / VISUAL</div>
+      <img src="161.jpg" alt="Artwork" style="width:100%; height:auto; border-radius:4px;">
+    </div>
+
+    <div class="cyber-panel calendar-panel">
+      <div class="panel-header">SYSTEM_CALENDAR</div>
+
+      <div class="calendar-header-bar">
+        <button id="prevMonth">◀</button>
+        <span id="monthYear"></span>
+        <button id="nextMonth">▶</button>
+      </div>
+
+      <div id="calendar" class="calendar-grid"></div>
+    </div>
+
+  </section>
+
+  <!-- CENTER COLUMN -->
+  <section class="layout-col center-col">
+
+    <!-- Top Bar -->
+    <div class="cyber-panel top-bar">
+      <div class="top-center">
+        <span id="weather">🌤 72°F</span>
+        <span id="clock">12:48</span>
+        <button id="settings-btn">SETTINGS</button>
+      </div>
+    </div>
+
+    <!-- Links Panel -->
+    <div class="cyber-panel links-panel">
+      <div class="panel-header text-center"></div>
+      <div id="links-box">
+
+
+      <!-- SOCIAL -->
+      <div class="link-category">
+        <div class="category-title">SOCIAL</div>
+        <div class="category-links">
+    <a href="https://github.com" target="_blank">GitHub</a>
+    <a href="https://twitter.com" target="_blank">Twitter</a>
+    <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+    <a href="https://mastodon.social" target="_blank">Mastodon</a>
+    <a href="https://www.instagram.com" target="_blank">Instagram</a>
+    <a href="https://news.ycombinator.com" target="_blank">Hacker News</a>
+    <a href="https://www.youtube.com" target="_blank">YouTube</a>
+    <a href="https://www.twitch.tv" target="_blank">Twitch</a>
+    <a href="https://www.discord.com" target="_blank">Discord</a>
+        </div>
+      </div>
+
+      <!-- DEV -->
+      <div class="link-category">
+        <div class="category-title">DEV</div>
+        <div class="category-links">
+          <a href="https://github.com/">github</a> <a href="https://www.reddit.com/r/unixporn/">unixporn</a> <a href="https://www.reddit.com/r/linux/">linux</a>
+          <a href="https://www.reddit.com/r/archlinux/">archlinux</a> <a href="https://devhints.">devhints</a> <a href="https://www.freecodecamp.org/">freecodecamp</a>
+          <a href="https://www.netlify.com/">netlify</a> 
+      </div>
+
+      <!-- GAMING -->
+      <div class="link-category">
+        <div class="category-title">GAMING</div>
+        <div class="category-links">
+          <a href="https://www.backloggd.com/">backloggd</a> <a href="https://www.protondb.com/">protondb</a> <a href="https://www.gamingonlinux.com/">GamingOnLinux</a> <a href="https://lutris.net/">Lutris</a>
+        </div>
+      </div>
+
+     
+<!-- reddit -->
+<div class="link-category">
+  <div class="category-title">REDDIT</div>
+  <div class="category-links">
+    <a href="https://reddit.com/r/programming">Programming</a>
+    <a href="https://reddit.com/r/selfhosted">Selfhosted</a>
+    <a href="https://reddit.com/r/unixporn">Unixporn</a>
+  </div>
+</div>
+
+<!-- work -->
+<div class="link-category">
+  <div class="category-title">WORK</div>
+  <div class="category-links">
+    <a href="https://voice.google.com/u/0/messages">google voice</a>
+    <a href="https://gmail.com">gmail</a>
+    <a href="https://mail.proton.me/u/0/inbox">proton mail</a>
+  </div>
+</div>
+
+<!-- music -->
+<div class="link-category">
+  <div class="category-title">MUSIC</div>
+  <div class="category-links">
+    <a href="https://soundcloud.com/">soundcloud</a>
+    <a href="https://bandcamp.com/">bandcamp</a>
+  </div>
+</div>
+
+<!-- weeb -->
+<div class="link-category">
+  <div class="category-title">WEEB</div>
+  <div class="category-links">
+    <a href="https://anilist.co/home">anilist</a>
+  </div>
+</div>
+
+<!-- misc -->
+<div class="link-category">
+  <div class="category-title">MISC</div>
+  <div class="category-links">
+          <a href="https://github.com" target="_blank">GitHub</a>
+          <a href="https://news.ycombinator.com" target="_blank">Hacker News</a>
+          <a href="https://reddit.com/r/cyberpunk" target="_blank">Cyberpunk Reddit</a>
+          <a href="https://twitter.com" target="_blank">Twitter</a>
+          <a href="https://www.youtube.com" target="_blank">YouTube</a>
+  </div>
+</div>
+ </div>
+    </div>
+
+    <!-- Info Bar -->
+    <div class="cyber-panel info-bar">
+      <div class="info-left">Swav_OS: Enabled</div>
+      <div class="info-right" id="uptime">Uptime: 0d 0h 0m</div>
+    </div>
+
+    <div id="signal-bars" class="signal-bars-wrapper"></div>
+
+  </section>
+
+  <!-- RIGHT COLUMN -->
+  <section class="layout-col right-col">
+
+    <div class="cyber-panel rss-panel">
+      <div class="panel-header">RSS FEED</div>
+      <div id="rss-box">
+        <div>Loading feed...</div>
+      </div>
+    </div>
+
+    <div class="cyber-panel todo-panel">
+      <div class="panel-header">TO-DO LIST</div>
+      <ul id="todo-list"></ul>
+      <input type="text" id="todo-input" placeholder="Add new task">
+      <button id="add-todo">Add</button>
+    </div>
+
+   
+<div class="cyber-panel" id="telemetry-panel">
+  <div class="panel-header">// Swav OS//</div>
+
+  <div class="telemetry-grid">
+
+    <!-- LEFT SIDE -->
+    <div class="telemetry-left">
+      <div id="cpu-bar" class="bar">█████░░░░░ 45%</div>
+      <div id="net-bar" class="bar">███████░░ 70%</div>
+      <div id="temp-bar" class="bar">███░░░░░░ 30°C</div>
+
+      <div class="bar">// GPS //</div>
+      <div id="lat" class="bar">Lat: 0.0000°</div>
+      <div id="long" class="bar">Long: 0.0000°</div>
+      <div id="alt" class="bar">Alt: 0m</div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <div class="right-kernel-panel">
+  <div class="panel-header"></div>
+  <div id="fake-kernel-log"></div>
+</div>
+
+    
+
+<script>
+// ======= FAKE KERNEL LOG WITH CORRECT DATES =======
+(function() {
+    const logContainer = document.getElementById("fake-kernel-log");
+    if (!logContainer) return;
+
+    const messages = [
+        "net: uplink handshake established",
+        "crypto: encryption layer active",
+        "signal: sync lock acquired",
+        "daemon: rss_watcher spawned",
+        "kernel: memory stable",
+        "fs: mounted /dev/sda1",
+        "auth: root session validated",
+        "sys: thermal variance detected",
+        "packet: integrity verified",
+        "ai_core: idle loop stable"
+    ];
+
+    function generateTimestamp() {
+        const now = new Date();
+        const date = now.toISOString().split("T")[0]; // YYYY-MM-DD
+        const time = now.toLocaleTimeString("en-US", { hour12: false });
+        return `[${date} ${time}]`;
+    }
+
+    function addLogLine() {
+        const timestamp = generateTimestamp();
+        const message = messages[Math.floor(Math.random() * messages.length)];
+        const line = document.createElement("div");
+        line.className = "kernel-line";
+        line.innerHTML = `<span class="ts">${timestamp}</span> ${message}`;
+        logContainer.prepend(line);
+
+        // Keep max 10 lines
+        if (logContainer.children.length > 10) {
+            logContainer.removeChild(logContainer.lastChild);
+        }
+    }
+
+    // Seed initial log
+    for (let i = 0; i < 4; i++) addLogLine();
+
+    // Update every second
+    setInterval(addLogLine, 1000);
+})();
+</script>
+
+<style>
+/* ======= FAKE KERNEL LOG CSS ======= */
+#fake-kernel-log {
+    display: flex;
+    flex-direction: column-reverse; /* new lines at top */
+    gap: 2px;
+    font-family: 'JetBrains Mono Nerd', monospace;
+    font-size: 0.75em;
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+.kernel-line {
+    color: #50fa7b;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.kernel-line .ts {
+    color: #8be9fd;
+    margin-right: 6px;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+</style>
+
+
+  </div>
+
+</div>
+
+
+</div>
+  </section>
+
+</main>
+
+<!-- SETTINGS MENU -->
+<div id="settings-menu" class="hidden">
+  <h3>Settings</h3>
+
+  <label>Background:
+    <input type="color" id="bg-color">
+  </label><br>
+
+  <label>Panel Border:
+    <input type="color" id="border-color">
+  </label><br>
+
+  <label>Title Color:
+    <input type="color" id="title-color">
+  </label><br>
+
+  <label>Link Color:
+    <input type="color" id="link-color">
+  </label><br>
+
+  <label>Font Family:
+    <select id="font-family">
+      <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+      <option value="Courier New, monospace">Courier New</option>
+      <option value="Arial, sans-serif">Arial</option>
+    </select>
+  </label><br>
+
+  <button id="save-settings">Save</button>
+  <button id="close-settings">Close</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+

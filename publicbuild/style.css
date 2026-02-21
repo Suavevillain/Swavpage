@@ -308,7 +308,7 @@ button#add-todo { margin-top:2px; padding:2px 5px; border-radius:3px; border:1px
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
-  color: #50fa7b;
+  color: #17848E;
 }
 
 .calendar-grid {
@@ -320,7 +320,7 @@ button#add-todo { margin-top:2px; padding:2px 5px; border-radius:3px; border:1px
 .calendar-header {
   text-align: center;
   font-size: 10px;
-  color: #f1fa8c;
+  color: #F8F8F2;
   font-weight: bold;
 }
 
